@@ -10,7 +10,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/users", methods=["POST"])
+@app.route("/survey", methods=["POST"])
 def create_user():
     print("Succesfully recieved POST info")
     print(request.form)
@@ -18,18 +18,20 @@ def create_user():
     session["dojo_location"] = request.form["dojo_location"]
     session["fav_language"] = request.form["fav_language"]
     session["comment"] = request.form["comment"]
-    return redirect("/show")
+    return redirect("/result")
 
 
-@app.route("/show")
+@app.route("/result")
 def show_user():
     print("Showing the User Info From the Form")
     print(request.form)
-    return render_template(
-        "show.html",
-        name_on_template=session["name"],
-        location_on_template=session["dojo_location"],
-    )
+    return render_template("result.html")
+
+
+@app.route("/reset")
+def reset():
+    session.clear()
+    return redirect("/")
 
 
 if __name__ == "__main__":
