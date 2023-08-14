@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import render_template, request, redirect, session
+from flask_app import app
 
-app = Flask(__name__)
-app.secret_key = "Ojo_surv12"
+# "Ojo_surv12"
 
 
 # our index route will handle rendering our form
